@@ -1,0 +1,70 @@
+<div class="content">
+  <kendo-grid #taskGrid
+              [data]="gridData"
+              [sortable]="true"
+              [reorderable]="true">
+    <kendo-grid-column field="id" title="ID" [width]="95"></kendo-grid-column>
+    <kendo-grid-column field="taskName" title="任务名" [width]="249"></kendo-grid-column>
+    <kendo-grid-column field="period" title="周期" [width]="146"></kendo-grid-column>
+    <kendo-grid-column field="status" title="状态" [width]="145"></kendo-grid-column>
+    <kendo-grid-column field="executeTime" title="执行时间" [width]="249"></kendo-grid-column>
+    <kendo-grid-column field="createTime" title="开始时间" [width]="249"></kendo-grid-column>
+    <kendo-grid-column field="endTime" title="结束时间" [width]="200"></kendo-grid-column>
+    <kendo-grid-column field="score" title="得分" format="{0:n2}" [width]="202"></kendo-grid-column>
+    <ng-template kendoGridDetailTemplate let-dataItem>
+      <kendo-grid #innerGrid class="auto-hight"
+                  [data]="innerData">
+        <kendo-grid-column field="id" title="ID" [width]="300"></kendo-grid-column>
+        <kendo-grid-column field="ename" title="英文名" [width]="300"></kendo-grid-column>
+        <kendo-grid-column field="cname" title="中文名" [width]="300"></kendo-grid-column>
+        <kendo-grid-column field="price" title="价格" [width]="300"></kendo-grid-column>
+        <kendo-grid-column field="quantity" title="质量" [width]="300"></kendo-grid-column>
+        <kendo-grid-column field="no" title="排名" [width]="300"></kendo-grid-column>
+        <kendo-grid-column field="person" title="人物" [width]="300"></kendo-grid-column>
+        <kendo-grid-column field="time" title="时间" [width]="300"></kendo-grid-column>
+        <kendo-grid-column field="address" title="地点" [width]="300"></kendo-grid-column>
+        <kendo-grid-column field="level" title="级别" [width]="300"></kendo-grid-column>
+        <kendo-grid-column-group title="story" [locked]="false">
+          <kendo-grid-column field="person" title="人物" [width]="300"></kendo-grid-column>
+          <kendo-grid-column field="time" title="时间" [width]="300"></kendo-grid-column>
+          <kendo-grid-column field="address" title="地点" [width]="300"></kendo-grid-column>
+          <kendo-grid-column field="level" title="级别" [width]="300"></kendo-grid-column>
+        </kendo-grid-column-group>
+      </kendo-grid>
+    </ng-template>
+  </kendo-grid>
+  <div class="chart-content">
+    <p-chart class="chart-area"
+             type="line"
+             [data]="data"
+             [options]="chartOptions">
+    </p-chart>
+  </div>
+  <div id="echarts"></div>
+  <div class="kendo-chart-content">
+    <kendo-chart [categoryAxis]="{ categories: categories }">
+      <kendo-chart-title text="test"></kendo-chart-title>
+      <kendo-chart-legend position="bottom" orientation="horizontal"></kendo-chart-legend>
+      <kendo-chart-tooltip format="{0}%">
+      </kendo-chart-tooltip>
+      <!--<kendo-chart-value-axis>-->
+      <!--<kendo-chart-value-axis-item [name]="test"-->
+      <!--[title]="test"-->
+      <!--[max]="10e-1"-->
+      <!--[min]="10e-15"-->
+      <!--&gt;-->
+      <!--</kendo-chart-value-axis-item>-->
+      <!--</kendo-chart-value-axis>-->
+      <kendo-chart-series>
+        <kendo-chart-series-item *ngFor="let item of series"
+                                 type="line"
+                                 style="smooth"
+                                 [data]="item.data"
+                                 [name]="item.name">
+        </kendo-chart-series-item>
+      </kendo-chart-series>
+    </kendo-chart>
+  </div>
+</div>
+
+

@@ -1,0 +1,59 @@
+<div>
+  <span>kendo 实现方案-----------PASS</span>
+  <div class="channel-content">
+    <div class="grid">
+      <kendo-grid
+        #channelGrid1
+        [resizable]="true"
+        [data]="channelData"
+        (detailCollapse)="rowToggle($event, 0)"
+        (detailExpand)="rowToggle($event, 0)">
+        <kendo-grid-column field="id" title="波道图" [style.width]="300"></kendo-grid-column>
+        <ng-template kendoGridDetailTemplate>
+          <div>123</div>
+        </ng-template>
+      </kendo-grid>
+    </div>
+    <div class="grid">
+      <kendo-grid #channelSceneGrid1
+                  class="override-hidden-detail"
+                  [resizable]="true"
+                  [data]="channelData">
+        <kendo-grid-column *ngFor="let i of infoData" field="{{i.field}}" title="{{i.name}}"
+                           [width]="200"></kendo-grid-column>
+        <ng-template kendoGridDetailTemplate>
+          <div>123</div>
+        </ng-template>
+      </kendo-grid>
+    </div>
+  </div>
+  <span>qunee 实现方案</span>
+  <button type="button" (click)="export()">export</button>
+  <div id="multiGrid" #multiGrid class="channel-content">
+    <kendo-grid
+      id="grid1"
+      #channelGrid2
+      [resizable]="true"
+      [data]="channelData"
+      (detailCollapse)="rowToggle($event, 1)"
+      (detailExpand)="rowToggle($event, 1)">
+      <kendo-grid-column field="id" title="波道图" [width]="300"></kendo-grid-column>
+      <ng-template kendoGridDetailTemplate>
+        <div>123</div>
+      </ng-template>
+    </kendo-grid>
+    <div>
+      <kendo-grid #channelSceneGrid2
+                  id="grid2"
+                  class="override-hidden-detail"
+                  [resizable]="true"
+                  [data]="channelData">
+        <kendo-grid-column *ngFor="let i of infoData" title="{{i.name}}"
+                           [width]="200"></kendo-grid-column>
+        <ng-template kendoGridDetailTemplate>
+          <div>123</div>
+        </ng-template>
+      </kendo-grid>
+    </div>
+  </div>
+</div>
